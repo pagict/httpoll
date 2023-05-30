@@ -1,1 +1,5 @@
 httpoll, a http server framework in a single thread epoll
+
+
+## Quick start
+```make``` to build with examples and benchmarks. no indivisual library would built currently.
