@@ -4,12 +4,14 @@
 #include <errno.h>
 #include <signal.h>
 #include <string.h>
+#include <string>
 #include <sys/epoll.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
 #include <functional>
 #include <memory>
+#include <regex>
 
 #include <fmt/args.h>
 
@@ -172,7 +174,7 @@ int Server::Poll(int timeout) {
             const auto &parser = conn->GetParser();
             const auto &uri = parser.GetUri();
             const auto &method = parser.GetMethod();
-            auto &&handlers_iter = request_handlers.find(uri);
+            auto &&handlers_iter = FindRequestHandler(uri);
 
             LOG_DEBUG("uri: {}, method: {}", uri,
                       static_cast<unsigned>(method));
@@ -296,4 +298,35 @@ int Server::CloseConn(Connection *conn) {
   pending_conns_.remove_if([conn](const auto &c) { return c.get() == conn; });
   return 0;
 }
+
+int Server::RegisterRequestHandler(const std::string &uri,
+                                   RequestHandler &&handler) {
+  std::string uri_copy(uri);
+  auto iter = uri_copy.begin();
+  while (iter != uri_copy.end()) {
+    if (*iter == '*') {
+      iter = uri_copy.insert(iter, '.');
+      ++iter;
+    }
+    ++iter;
+  }
+  request_handlers[uri_copy] = std::move(handler);
+  return 0;
+}
+
+decltype(Server::request_handlers)::const_iterator
+Server::FindRequestHandler(std::string_view uri) const {
+  std::string uri_str(uri.data());
+  auto handle_iter = request_handlers.end();
+  for (auto iter = request_handlers.begin(); iter != request_handlers.end();
+       ++iter) {
+    std::regex uri_regex(iter->first);
+    if (std::regex_match(uri_str, uri_regex)) {
+      handle_iter = iter;
+      break;
+    }
+  }
+  return handle_iter;
+}
+
 } // namespace hpl

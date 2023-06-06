@@ -1,16 +1,7 @@
-TESTLIB = -lgtest_main -lgtest -lpthread
+include httpoll.mk
 
-CXXFLAGS = -std=c++17 -g3 -O0
+libhttpoll.a: $(LIBOBJS)
+	$(AR) rcs $@ $^
 
-LIBS = -lfmt
-
-COMMON_FILES = http_method.cc http_version.cc
-
-TESTFILES = http_header_parser_test.cc
-
-test:  $(TESTFILES) http_header_parser.cc http_header_parser.h $(COMMON_FILES)
-	$(CXX)  $^ $(CXXFLAGS) $(TESTLIB)  $(LIBS) -o $@
-
-
-clean: 
-	rm -f test *.o
+clean:
+	rm $(LIBOBJS) libhttpoll.a

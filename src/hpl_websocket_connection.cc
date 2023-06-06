@@ -34,6 +34,10 @@ std::string WebsocketConnection::GetWsAcceptByKey(std::string_view ws_sec_key) {
   return ret;
 }
 
+int WebsocketConnection::GetDescriptor() const {
+  return conn_ ? conn_->GetDescriptor() : -1;
+}
+
 int WebsocketConnection::Read() {
   if (!conn_) {
     return -1;

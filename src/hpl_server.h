@@ -17,11 +17,7 @@ public:
 
   /// @param timeout, in milliseconds, -1 == infinite
   int Poll(int timeout);
-  inline int RegisterRequestHandler(const std::string &uri,
-                                    RequestHandler &&handler) {
-    request_handlers[uri] = std::move(handler);
-    return 0;
-  }
+  int RegisterRequestHandler(const std::string &uri, RequestHandler &&handler);
 
   int CloseConn(Connection *conn);
 
@@ -35,5 +31,8 @@ private:
   std::unique_ptr<Connection> AcceptNewConnection();
 
   std::map<std::string, RequestHandler, std::less<>> request_handlers;
+
+  decltype(request_handlers)::const_iterator
+  FindRequestHandler(std::string_view uri_view) const;
 };
 } // namespace hpl

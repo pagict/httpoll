@@ -5,5 +5,5 @@ Name: libhttpoll
 Version: 0.9.0
 Description: single thread HTTP/Websock C++ Framework
 Requires: libfmt
-Libs: -L${libdir} -lhttpoll -lfmt
+Libs: -L${libdir} -lhttpoll -lfmt -lm
 Cflags: -I${includedir}

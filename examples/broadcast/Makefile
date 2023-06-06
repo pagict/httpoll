@@ -1,6 +1,4 @@
-include ../../src/httpoll.mk
-
-broadcast: broadcast.o $(LIBOBJS)
+broadcast: broadcast.o ${LIBHTTPOLL}
 
 clean:
 	rm -f broadcast *.o

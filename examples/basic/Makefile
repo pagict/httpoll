@@ -1,6 +1,4 @@
-include ../../src/httpoll.mk
-
-basic: basic.o $(LIBOBJS)
+basic: basic.o ${LIBHTTPOLL}
 
 clean:
 	rm -f basic *.o

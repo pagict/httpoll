@@ -31,6 +31,8 @@ public:
   /// @retval true, ping frame is sent
   bool ServerPing();
 
+  int GetDescriptor() const;
+
 private:
   const std::string_view ws_key_;
   std::string ws_accept_;
