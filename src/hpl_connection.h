@@ -37,7 +37,7 @@ private:
   friend class Server;
   friend class WebsocketConnection;
 
-  int ProcessDataIn();
+  int ProcessDataIn(int ep_flags);
   std::string &&PopBody();
   WebsocketConnection *UpgradeToWebsocket(WsHandler ws_on_msg,
                                           WsHook will_close_hook);
@@ -54,5 +54,7 @@ private:
   /// @retval 0, the stream drained, try another time
   /// @retval 1, success, try another read
   int Read();
+
+  Handler will_close_hook_ = nullptr;
 };
 } // namespace hpl

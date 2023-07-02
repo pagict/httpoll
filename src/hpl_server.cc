@@ -155,13 +155,11 @@ int Server::Poll(int timeout) {
             CloseConn(conn);
           }
         } else {
-          auto ret = conn->ProcessDataIn();
+          auto ret = conn->ProcessDataIn(events[i].events);
           LOG_DEBUG("EPOLLIN for conn[{} {}] ret[{}]", fmt::ptr(conn),
                     conn->fd_, ret);
           switch (ret) {
           case -2: {
-            LOG_DEBUG("EPOLLIN for conn[{} {}] ret[{}]", fmt::ptr(conn),
-                      conn->fd_, ret);
             CloseConn(conn);
             break;
           }
@@ -180,6 +178,7 @@ int Server::Poll(int timeout) {
                       static_cast<unsigned>(method));
             if (handlers_iter != request_handlers.end()) {
               Handler handler = nullptr;
+              conn->will_close_hook_ = handlers_iter->second.http_will_colse;
 
               if (conn->ShouldUpgradeWebsocket()) {
                 auto *ws_conn = conn->UpgradeToWebsocket(
@@ -289,6 +288,9 @@ int Server::CloseConn(Connection *conn) {
     LOG_ERROR("epoll_ctl, del conn[{} {}] error:{}", fmt::ptr(conn), conn->fd_,
               strerror_r(errno, buf, kBufSize));
     return -1;
+  }
+  if (conn->will_close_hook_) {
+    conn->will_close_hook_(conn, "", "", true);
   }
   LOG_DEBUG("{} {}", __FUNCTION__, conn->fd_);
   if (conn->fd_ != -1) {

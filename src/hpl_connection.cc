@@ -1,10 +1,12 @@
 #include "hpl_connection.h"
 
+#include <assert.h>
 #include <errno.h>
 #include <functional>
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/epoll.h>
 #include <unistd.h>
 
 #include <algorithm>
@@ -62,6 +64,7 @@ int Connection::Read() {
 #endif
   char local_buffer[kLocalBufferLen];
 
+  assert(read_len > 0);
   int nread = read(fd_, local_buffer, read_len);
   if (nread > 0) {
     buffer_.insert(buffer_.end(), local_buffer, local_buffer + nread);
@@ -110,7 +113,7 @@ WebsocketConnection *Connection::UpgradeToWebsocket(WsHandler ws_on_msg,
 /// @retval -1, headers not complete
 /// @retval 0, headers complete, but body not complete
 /// @retval 1, a complete request
-int Connection::ProcessDataIn() {
+int Connection::ProcessDataIn(int ep_flags) {
   auto state_ret = [](auto state) {
     switch (state) {
     case HttpHeaderParser::ParserState::Body:
@@ -124,6 +127,10 @@ int Connection::ProcessDataIn() {
   do {
     int ret = Read();
     if (ret == -1) {
+      if (ep_flags & EPOLLRDHUP || ep_flags & EPOLLHUP) {
+        LOG_DEBUG("connection closed by peer, we can still write");
+        return 1;
+      }
       return -2;
     } else if (ret == 0) {
       return state_ret(parser.GetState());

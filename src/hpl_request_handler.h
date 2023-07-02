@@ -31,6 +31,7 @@ typedef std::function<int(WebsocketConnection *, WsFrameType type,
 
 struct RequestHandler {
   Handler http_handlers[static_cast<int>(HttpMethod::UNKNOWN)] = {};
+  Handler http_will_colse = nullptr;
   WsHook ws_connect_hook = nullptr;
   WsHook ws_ready_hook = nullptr;
   WsHook ws_will_close_hook = nullptr;

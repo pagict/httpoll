@@ -11,9 +11,11 @@
 
 #define LOG_RAW(prefix, format, ...)                                           \
   do {                                                                         \
-    std::time_t t = std::time(nullptr);                                        \
-    fmt::print(stderr, prefix "|{:%T}|{}:{}|" format "\n", fmt::localtime(t),  \
-               __FILENAME__, __LINE__, ##__VA_ARGS__);                         \
+    struct timespec ts;                                                        \
+    clock_gettime(CLOCK_REALTIME, &ts);                                        \
+    fmt::print(stderr, prefix "|{:%T}.{}|{}:{}|" format "\n",                  \
+               fmt::localtime(ts.tv_sec), ts.tv_nsec / 100000, __FILENAME__,   \
+               __LINE__, ##__VA_ARGS__);                                       \
   } while (0)
 
 #define LOG_TRACE(fmt, ...) LOG_RAW("\033[1;30m[T]\033[0m", fmt, ##__VA_ARGS__)
