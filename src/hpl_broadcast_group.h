@@ -22,6 +22,8 @@ private:
   int pipefd_[2] = {-1, -1};
   std::vector<std::pair<std::array<int, 2>, WebsocketConnection *>>
       connections_;
+
+  int Broadcast_vmsplice(const std::string_view &data, WsFrameType msg_type);
 };
 } // namespace hpl
 

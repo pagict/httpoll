@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-fsanitize=address, -std=c++17, -g3, -g0, -fno-omit-frame-pointer]

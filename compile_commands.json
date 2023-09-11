@@ -1,0 +1,203 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_broadcast_group.o",
+      "hpl_broadcast_group.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_broadcast_group.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_broadcast_group.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_connection.o",
+      "hpl_connection.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_connection.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_connection.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_header_parser.o",
+      "hpl_header_parser.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_header_parser.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_header_parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_method.o",
+      "hpl_method.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_method.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_method.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_server.o",
+      "hpl_server.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_server.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_server.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_utils.o",
+      "hpl_utils.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_utils.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_version.o",
+      "hpl_version.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_version.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_version.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_websocket_connection.o",
+      "hpl_websocket_connection.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_websocket_connection.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_websocket_connection.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-g3",
+      "-O0",
+      "-fno-omit-frame-pointer",
+      "-DHPL_ENABLE_PING_PONG=10",
+      "-DSMALL_MEMORY=1024",
+      "-c",
+      "-o",
+      "hpl_websocket_utils.o",
+      "hpl_websocket_utils.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/src",
+    "file": "/root/Developer/httpoll.master/src/hpl_websocket_utils.cc",
+    "output": "/root/Developer/httpoll.master/src/hpl_websocket_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-I/root/Developer/httpoll.master/src",
+      "-c",
+      "-o",
+      "basic.o",
+      "basic.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/examples/basic",
+    "file": "/root/Developer/httpoll.master/examples/basic/basic.cc",
+    "output": "/root/Developer/httpoll.master/examples/basic/basic.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-I/root/Developer/httpoll.master/src",
+      "-c",
+      "-o",
+      "broadcast.o",
+      "broadcast.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/examples/broadcast",
+    "file": "/root/Developer/httpoll.master/examples/broadcast/broadcast.cc",
+    "output": "/root/Developer/httpoll.master/examples/broadcast/broadcast.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-I/root/Developer/httpoll.master/src",
+      "-c",
+      "-o",
+      "proxy_like.o",
+      "proxy_like.cc"
+    ],
+    "directory": "/root/Developer/httpoll.master/examples/proxy_like",
+    "file": "/root/Developer/httpoll.master/examples/proxy_like/proxy_like.cc",
+    "output": "/root/Developer/httpoll.master/examples/proxy_like/proxy_like.o"
+  }
+]
